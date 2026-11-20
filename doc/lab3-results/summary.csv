@@ -1,0 +1,2 @@
+"Scene","Primitives","Width","Height","Samples","Depth","Repeats","BruteTraceMs","KDTraceMs","KDBuildMs","BruteExecutionMs","KDExecutionMs","TotalSpeedup","TraceSpeedup","BrutePrimitiveTests","KDPrimitiveTests","KDBoxTests","MaxPixelError","SceneSHA256"
+"ray_tracing_lab3","16","128","128","1","6","5","33.5179","33.4856","0.0662","33.8544","33.682","1.0051184608989965","1.0009645937358147","1433839","572878","90512","0","03346274bd5c014891f3be09348d9fa71d66c0572401e5dc1af4dfff9b13ad84"

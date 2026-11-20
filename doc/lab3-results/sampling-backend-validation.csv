@@ -1,0 +1,7 @@
+run,backend,width,height,samples,depth,primitives,nodes,leaf_refs,tree_depth,prepare_ms,build_ms,trace_ms,total_ms,primary_rays,secondary_rays,shadow_rays,primitive_tests,box_tests,max_pixel_error,counters_enabled,execution_ms,camera_preset,SceneSHA256
+1,BruteForce,64,64,16,4,16,0,0,0,0.0297,0.0004,209.243,209.274,0,0,0,0,0,0,0,211.642,default,03346274bd5c014891f3be09348d9fa71d66c0572401e5dc1af4dfff9b13ad84
+1,KDTree,64,64,16,4,16,11,27,3,0.0314,0.0969,193.459,193.587,0,0,0,0,0,0,0,193.617,default,03346274bd5c014891f3be09348d9fa71d66c0572401e5dc1af4dfff9b13ad84
+1,BruteForce,64,64,32,4,16,0,0,0,0.0505,0.0003,333.371,333.422,0,0,0,0,0,0,0,336.7,default,03346274bd5c014891f3be09348d9fa71d66c0572401e5dc1af4dfff9b13ad84
+1,KDTree,64,64,32,4,16,11,27,3,0.0463,0.1605,309.885,310.092,0,0,0,0,0,0,0,310.125,default,03346274bd5c014891f3be09348d9fa71d66c0572401e5dc1af4dfff9b13ad84
+1,BruteForce,64,64,64,4,16,0,0,0,0.0394,0.0002,564.496,564.536,0,0,0,0,0,0,0,566.306,default,03346274bd5c014891f3be09348d9fa71d66c0572401e5dc1af4dfff9b13ad84
+1,KDTree,64,64,64,4,16,11,27,3,0.0247,0.0539,432.503,432.581,0,0,0,0,0,0,0,432.609,default,03346274bd5c014891f3be09348d9fa71d66c0572401e5dc1af4dfff9b13ad84

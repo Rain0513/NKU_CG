@@ -38,7 +38,7 @@ namespace NRenderer
     }
 
     ComponentManager::State ComponentManager::getState() const {
-        return state;
+        return state.load(std::memory_order_acquire);
     }
 
     chrono::duration<double> ComponentManager::getLastExecTime() const {

@@ -6,6 +6,7 @@
 #include <vector>
 #include <chrono>
 #include <thread>
+#include <atomic>
 
 #include "component/RenderComponent.hpp"
 #include "server/Server.hpp"
@@ -24,11 +25,11 @@ namespace NRenderer
             FINISH
         };
     private:
-        State state;
+        std::atomic<State> state;
         vector<HMODULE> loadedDlls;
         ComponentInfo activeComponent;
-        chrono::system_clock::time_point lastStartTime;
-        chrono::system_clock::time_point lastEndTime;
+        chrono::steady_clock::time_point lastStartTime;
+        chrono::steady_clock::time_point lastEndTime;
         thread t;
     public:
         ComponentManager();
@@ -47,12 +48,14 @@ namespace NRenderer
                 t = thread(&Interface::exec,
                     component, 
                     [this]() -> void {
-                        this->state = State::RUNNING;
-                        this->lastStartTime = chrono::system_clock::now();
+                        this->lastStartTime = chrono::steady_clock::now();
+                        this->state.store(State::RUNNING, std::memory_order_release);
                     },
                     [this]() -> void {
-                        this->state = State::FINISH;
-                        this->lastEndTime = chrono::system_clock::now();
+                        // Publish the timestamp before FINISH. The UI's acquire
+                        // load then observes completed timing data, never stale data.
+                        this->lastEndTime = chrono::steady_clock::now();
+                        this->state.store(State::FINISH, std::memory_order_release);
                     },
                     std::forward<Args>(args)...);
                     t.detach();

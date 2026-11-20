@@ -1,4 +1,6 @@
 #include "ui/views/ComponentProgressView.hpp"
+#include <iomanip>
+#include <sstream>
 
 namespace NRenderer
 {
@@ -28,9 +30,10 @@ namespace NRenderer
             else if (componentManager.getState() == ComponentManager::State::FINISH) {
                 auto execTime = componentManager.getLastExecTime();
                 componentManager.finish();
-                string logInfo{};
-                logInfo = activeComponentInfo.id + "执行完毕. Time: " + to_string(execTime.count()) + "s";
-                getServer().logger.success(logInfo);
+                std::ostringstream logInfo;
+                logInfo << activeComponentInfo.name << " 执行完成，总时间："
+                        << std::fixed << std::setprecision(6) << execTime.count() << " s";
+                getServer().logger.success(logInfo.str());
                 uiContext.state = UIContext::State::NORMAL;
                 ImGui::CloseCurrentPopup();
             }

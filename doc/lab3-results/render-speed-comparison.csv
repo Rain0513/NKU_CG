@@ -1,0 +1,5 @@
+configuration,backend,size,samples,depth,execution_ms
+4x4 samples; no cached emitter plane,BruteForce,500,16,4,24685.4
+4x4 samples; no cached emitter plane,KDTree,500,16,4,23111
+2x2 samples; cached emitter plane,BruteForce,500,16,4,5717.62
+2x2 samples; cached emitter plane,KDTree,500,16,4,6905.95

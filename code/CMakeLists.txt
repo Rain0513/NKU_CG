@@ -6,6 +6,15 @@ project(NRenderer VERSION 2.0
 		DESCRIPTION	"服务于本科教学的三维渲染系统"
 		LANGUAGES C CXX)
 
+# Some Chinese MSVC installations produce UTF-8 /showIncludes lines while
+# compiler detection stores a mojibake prefix. Repair that detected value so
+# Ninja actually tracks headers; otherwise changed structs can leave stale OBJs.
+if(MSVC AND CMAKE_GENERATOR STREQUAL "Ninja")
+    if(CMAKE_CXX_CL_SHOWINCLUDES_PREFIX MATCHES "娉|鍖|鏂")
+        set(CMAKE_CL_SHOWINCLUDES_PREFIX "注意: 包含文件:")
+    endif()
+endif()
+
 message(${PROJECT_SOURCE_DIR})
 message(${PROJECT_NAME})
 message("BUILD_RPATH TYPE: " ${CMAKE_BUILD_TYPE})
